@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { pool } = require('../db/connection');
+const { verifyApiKey } = require('../middleware/apiKey');
 
 // POST /api/contact
 router.post('/', async (req, res) => {
@@ -27,8 +28,8 @@ router.post('/', async (req, res) => {
     }
 });
 
-// GET /api/contact (admin - all messages)
-router.get('/', async (req, res) => {
+// GET /api/contact (admin - all messages) - Protected with API Key
+router.get('/', verifyApiKey, async (req, res) => {
     try {
         const [rows] = await pool.query('SELECT * FROM contact_messages ORDER BY created_at DESC');
         res.json(rows);

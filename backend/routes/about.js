@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { pool } = require('../db/connection');
+const { verifyApiKey } = require('../middleware/apiKey');
 
 // GET /api/about
 router.get('/', async (req, res) => {
@@ -13,8 +14,8 @@ router.get('/', async (req, res) => {
     }
 });
 
-// PUT /api/about/:id (admin update)
-router.put('/:id', async (req, res) => {
+// PUT /api/about/:id (admin update) - Protected with API Key
+router.put('/:id', verifyApiKey, async (req, res) => {
     const { name, title, subtitle, bio, github_url, linkedin_url, email, location, years_experience } = req.body;
     try {
         await pool.query(
