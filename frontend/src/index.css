@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+
+  body {
+    @apply bg-[#050510] text-slate-100 font-sans overflow-x-hidden;
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(99, 102, 241, 0.06) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(6, 182, 212, 0.06) 0%, transparent 60%),
+      linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+    background-size: auto, auto, 60px 60px, 60px 60px;
+    background-attachment: fixed;
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-[#0a0a1f];
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-indigo-500 rounded-full;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    /* Use a single solid color instead of gradient for better readability */
+    @apply text-indigo-400;
+  }
+
+  .glass-card {
+    @apply bg-white/[0.03] border border-white/[0.06] rounded-3xl transition-all duration-300;
+  }
+
+  .glass-card:hover {
+    @apply bg-white/[0.05] border-white/[0.08] shadow-[0_8px_30px_#00000066] -translate-y-0.5;
+  }
+
+  /* Primary call-to-action: solid color (no gradient) */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-2.5 rounded-full font-heading font-semibold bg-indigo-600 text-white shadow-[0_6px_20px_#0b122033] hover:shadow-[0_8px_32px_#0b122044] hover:-translate-y-0.5 transition-all duration-200 cursor-pointer border-0;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-7 py-3 rounded-full font-heading font-semibold border border-white/10 text-slate-200 bg-transparent hover:border-indigo-500 hover:bg-indigo-500/10 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer;
+  }
+
+  /* Button variant for Hire Me / Let's Talk (solid) */
+  .btn-hire {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-heading font-semibold bg-cyan-600 text-white border-0 shadow-[0_6px_16px_#0b122033] hover:brightness-105 transition-all duration-200;
+  }
+
+  .section-tag {
+    @apply inline-block font-code text-xs text-cyan-400 bg-cyan-400/10 border border-cyan-400/20 px-4 py-1 rounded-full mb-3 tracking-wider;
+  }
+
+  .section-title {
+    @apply font-heading font-bold text-4xl md:text-5xl bg-gradient-to-r from-slate-100 to-slate-400 bg-clip-text text-transparent mb-3;
+  }
+
+  .nav-link {
+    @apply text-sm font-medium text-slate-400 hover:text-white transition-colors duration-200 relative;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-full transition-all duration-300;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    @apply w-full;
+  }
+
+  .nav-link.active {
+    @apply text-white;
+  }
+
+  .skill-bar {
+    @apply h-1.5 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-500 transition-all duration-1000 ease-out;
+  }
+
+  .tech-badge {
+    @apply text-xs font-code px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/25 text-indigo-300;
+  }
+
+  .form-input-base {
+    @apply w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-slate-100 outline-none placeholder-slate-500 focus:border-indigo-500 focus:bg-indigo-500/5 focus:ring-2 focus:ring-indigo-500/20 transition-all duration-300 font-sans text-sm;
+  }
+}
+
+/* Footer uses Tailwind utility classes in the component; no custom CSS required */
+
+@layer utilities {
+  .typing-cursor {
+    @apply inline-block w-0.5 h-[1em] bg-indigo-400 ml-1 align-middle animate-blink rounded-sm;
+  }
+
+  .particle {
+    @apply absolute w-0.5 h-0.5 rounded-full opacity-0;
+    animation: float-particle linear infinite;
+  }
+
+  @keyframes float-particle {
+    0% {
+      transform: translateY(100vh);
+      opacity: 0;
+    }
+
+    10% {
+      opacity: 0.6;
+    }
+
+    90% {
+      opacity: 0.2;
+    }
+
+    100% {
+      transform: translateY(-10vh);
+      opacity: 0;
+    }
+  }
+
+  @keyframes loader-progress {
+    from {
+      width: 0%;
+    }
+
+    to {
+      width: 100%;
+    }
+  }
+
+  .loader-bar {
+    animation: loader-progress 1.8s ease-in-out forwards;
+  }
+
+  /* Chat widget animations */
+  @keyframes chat-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px) scale(0.98);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .chat-msg-in {
+    animation: chat-in 0.25s ease-out;
+  }
+
+  @keyframes typing-dots {
+
+    0%,
+    80%,
+    100% {
+      transform: scale(0.8);
+      opacity: 0.4;
+    }
+
+    40% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .dot-1 {
+    animation: typing-dots 1.2s ease-in-out infinite 0s;
+  }
+
+  .dot-2 {
+    animation: typing-dots 1.2s ease-in-out infinite 0.2s;
+  }
+
+  .dot-3 {
+    animation: typing-dots 1.2s ease-in-out infinite 0.4s;
+  }
+}
