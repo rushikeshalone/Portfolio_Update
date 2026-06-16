@@ -10,6 +10,7 @@ import Experience from './components/Experience';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ChatAgent from './components/ChatAgent';
+import ClientMarquee from './components/ClientMarquee';
 import './index.css';
 
 function PageLoader({ onDone }) {
@@ -73,7 +74,10 @@ function AppContent({ loading, setLoading }) {
           <main>
             <AnimatePresence mode="wait">
               <Routes location={location} key={location.pathname}>
-                <Route path="/" element={<PageWrapper><Hero /></PageWrapper>} />
+                <Route path="/"
+                  element={<PageWrapper><Hero />
+                    <ClientMarquee />
+                  </PageWrapper>} />
                 <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
                 <Route path="/skills" element={<PageWrapper><Skills /></PageWrapper>} />
                 <Route path="/projects" element={<PageWrapper><Projects /></PageWrapper>} />
