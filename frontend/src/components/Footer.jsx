@@ -29,7 +29,7 @@ export default function Footer() {
                     <ul className="flex flex-col gap-2">
                         {['Home', 'About', 'Skills', 'Projects', 'Experience', 'Contact'].map(l => (
                             <li key={l}>
-                                <a href={`#${l.toLowerCase()}`} className="text-slate-300 hover:text-white transition">{l}</a>
+                                <a href={`${l.toLowerCase()}`} className="text-slate-300 hover:text-white transition">{l}</a>
                             </li>
                         ))}
                     </ul>
